@@ -1,8 +1,8 @@
 games = \
 [
-    ("Sam", "Connor"), ("Sam", "Connor"), ("Sam", "Connor")
+    ("Sam", "Connor"), ("Sam", "Connor"), ("Sam", "Connor"), ("Connor", "John"), ("Sam", "Connor"), ("Sam", "Connor")
 ]
-players_colors = {"Sam": "CornflowerBlue", "Connor": "gray52"}
+players_colors = {"Sam": "firebrick1", "Connor": "green3", "John": "blue1", "Joseph":"Deep Pink", "Jay": "DarkMagenta"}
 players = {}
 
 
@@ -38,9 +38,13 @@ def draw():
         print(player)
         num += 1
         rect = Rectangle(Point(0, (num - 1)*(height/len(players))), Point(width, num*(height/len(players))))
-        rect.setFill(players_colors[player])
+        try:
+            rect.setFill(players_colors[player])
+        except KeyError:
+            rect.setFill("red")
         rect.draw(win)
-        text = Text(Point(width/2, ((num - 1)*(height/len(players)))+(height/len(players))/2), player + " : " + str(players[player]))
+        text = Text(Point(width/2, ((num - 1)*(height/len(players)))+(height/len(players))/2), player + " : " + str(round((players[player]), 2)))
+        text.setSize(20)
         text.draw(win)
 
     win.getMouse()
